@@ -1,0 +1,95 @@
+18:30:02 **** Incremental Build of configuration Debug for project practica2F3 ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/hd44780.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L475xx -DUSE_FULL_LL_DRIVER -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/hd44780.d" -MT"Core/Src/hd44780.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/hd44780.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L475xx -DUSE_FULL_LL_DRIVER -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/stm32l4xx_hal_msp.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L475xx -DUSE_FULL_LL_DRIVER -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32l4xx_hal_msp.d" -MT"Core/Src/stm32l4xx_hal_msp.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32l4xx_hal_msp.o"
+arm-none-eabi-gcc "../Core/Src/stm32l4xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L475xx -DUSE_FULL_LL_DRIVER -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32l4xx_it.d" -MT"Core/Src/stm32l4xx_it.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32l4xx_it.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:299:13: error: invalid storage class for function 'MX_DFSDM1_Init'
+  299 | static void MX_DFSDM1_Init(void)
+      |             ^~~~~~~~~~~~~~
+../Core/Src/main.c:337:13: error: invalid storage class for function 'MX_I2C2_Init'
+  337 | static void MX_I2C2_Init(void)
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:385:13: error: invalid storage class for function 'MX_QUADSPI_Init'
+  385 | static void MX_QUADSPI_Init(void)
+      |             ^~~~~~~~~~~~~~~
+../Core/Src/main.c:418:13: error: invalid storage class for function 'MX_SPI3_Init'
+  418 | static void MX_SPI3_Init(void)
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:458:13: error: invalid storage class for function 'MX_USART1_UART_Init'
+  458 | static void MX_USART1_UART_Init(void)
+      |             ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:493:13: error: invalid storage class for function 'MX_USART3_UART_Init'
+  493 | static void MX_USART3_UART_Init(void)
+      |             ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:528:13: error: invalid storage class for function 'MX_USB_OTG_FS_PCD_Init'
+  528 | static void MX_USB_OTG_FS_PCD_Init(void)
+      |             ^~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:563:13: error: invalid storage class for function 'MX_GPIO_Init'
+  563 | static void MX_GPIO_Init(void)
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:949:1: error: expected declaration or statement at end of input
+  949 | }
+      | ^
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:62:13: warning: 'MX_GPIO_Init' used but never defined
+   62 | static void MX_GPIO_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:63:13: warning: 'MX_DFSDM1_Init' used but never defined
+   63 | static void MX_DFSDM1_Init(void);
+      |             ^~~~~~~~~~~~~~
+../Core/Src/main.c:64:13: warning: 'MX_I2C2_Init' used but never defined
+   64 | static void MX_I2C2_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:65:13: warning: 'MX_QUADSPI_Init' used but never defined
+   65 | static void MX_QUADSPI_Init(void);
+      |             ^~~~~~~~~~~~~~~
+../Core/Src/main.c:66:13: warning: 'MX_SPI3_Init' used but never defined
+   66 | static void MX_SPI3_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:67:13: warning: 'MX_USART1_UART_Init' used but never defined
+   67 | static void MX_USART1_UART_Init(void);
+      |             ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:68:13: warning: 'MX_USART3_UART_Init' used but never defined
+   68 | static void MX_USART3_UART_Init(void);
+      |             ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:69:13: warning: 'MX_USB_OTG_FS_PCD_Init' used but never defined
+   69 | static void MX_USB_OTG_FS_PCD_Init(void);
+      |             ^~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:940:6: warning: 'Error_Handler' defined but not used [-Wunused-function]
+  940 | void Error_Handler(void)
+      |      ^~~~~~~~~~~~~
+../Core/Src/main.c:563:13: warning: 'MX_GPIO_Init' defined but not used [-Wunused-function]
+  563 | static void MX_GPIO_Init(void)
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:528:13: warning: 'MX_USB_OTG_FS_PCD_Init' defined but not used [-Wunused-function]
+  528 | static void MX_USB_OTG_FS_PCD_Init(void)
+      |             ^~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:493:13: warning: 'MX_USART3_UART_Init' defined but not used [-Wunused-function]
+  493 | static void MX_USART3_UART_Init(void)
+      |             ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:458:13: warning: 'MX_USART1_UART_Init' defined but not used [-Wunused-function]
+  458 | static void MX_USART1_UART_Init(void)
+      |             ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:418:13: warning: 'MX_SPI3_Init' defined but not used [-Wunused-function]
+  418 | static void MX_SPI3_Init(void)
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:385:13: warning: 'MX_QUADSPI_Init' defined but not used [-Wunused-function]
+  385 | static void MX_QUADSPI_Init(void)
+      |             ^~~~~~~~~~~~~~~
+../Core/Src/main.c:337:13: warning: 'MX_I2C2_Init' defined but not used [-Wunused-function]
+  337 | static void MX_I2C2_Init(void)
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:299:13: warning: 'MX_DFSDM1_Init' defined but not used [-Wunused-function]
+  299 | static void MX_DFSDM1_Init(void)
+      |             ^~~~~~~~~~~~~~
+../Core/Src/main.c:238:6: warning: 'SystemClock_Config' defined but not used [-Wunused-function]
+  238 | void SystemClock_Config(void)
+      |      ^~~~~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:37: Core/Src/main.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+
+18:30:03 Build Failed. 11 errors, 18 warnings. (took 905ms)
+
