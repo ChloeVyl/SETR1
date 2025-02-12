@@ -32,9 +32,9 @@ uint8_t _lcd_line = 0;
 void lcd_clock(void)
 {
     // Pulse clock
-    HAL_GPIO_WritePin(CLOCK_PORT, LCD_CLOCK);
+    LL_GPIO_SetOutputPin(CLOCK_PORT, LCD_CLOCK);
     LL_mDelay(1);
-    HAL_GPIO_WritePin(CLOCK_PORT, LCD_CLOCK);
+    LL_GPIO_ResetOutputPin(CLOCK_PORT, LCD_CLOCK);
      //LL_mDelay(1);
 }
 
@@ -43,11 +43,11 @@ void lcd_reset(void)
     // Resets display from any state to 4-bit mode, first nibble.
 
     // Set everything low first
-    HAL_GPIO_WritePin(RS_PORT, LCD_RS);
-    HAL_GPIO_WritePin(LCD_PORT7,  LCD_7);
-    HAL_GPIO_WritePin(LCD_PORT4,  LCD_4);
-    HAL_GPIO_WritePin(LCD_PORT56,  LCD_5 | LCD_6);
-    HAL_GPIO_WritePin(CLOCK_PORT,  LCD_CLOCK );
+    LL_GPIO_ResetOutputPin(RS_PORT, LCD_RS);
+    LL_GPIO_ResetOutputPin(LCD_PORT7,  LCD_7);
+    LL_GPIO_ResetOutputPin(LCD_PORT4,  LCD_4);
+    LL_GPIO_ResetOutputPin(LCD_PORT56,  LCD_5 | LCD_6);
+    LL_GPIO_ResetOutputPin(CLOCK_PORT,  LCD_CLOCK );
 
     // Reset strategy below based on Wikipedia description, should recover
     // from any setting
@@ -55,14 +55,14 @@ void lcd_reset(void)
     // Write 0b0011 three times
     // (Everyday Practical Electronics says 3 times, Wikipedia says 2 times,
     // 3 seems to work better).
-    HAL_GPIO_WritePin(LCD_PORT4, LCD_4 );
-    HAL_GPIO_WritePin(LCD_PORT56, LCD_5 );
+    LL_GPIO_SetOutputPin(LCD_PORT4, LCD_4 );
+    LL_GPIO_SetOutputPin(LCD_PORT56, LCD_5 );
     lcd_clock();
     lcd_clock();
     lcd_clock();
     // LCD now guaranteed to be in 8-bit state
     // Now write 0b0010 (set to 4-bit mode, ready for first nibble)
-    HAL_GPIO_WritePin(LCD_PORT4, LCD_4);
+    LL_GPIO_ResetOutputPin(LCD_PORT4, LCD_4);
     lcd_clock();
 }
 
@@ -80,53 +80,53 @@ void lcd_write(uint8_t byte, uint8_t rs)
     // Write second nibble and set RS
 
     if((byte >> 4 ) & 1)
-        HAL_GPIO_WritePin(LCD_PORT4, LCD_4);
+        LL_GPIO_SetOutputPin(LCD_PORT4, LCD_4);
     else
-        HAL_GPIO_WritePin(LCD_PORT4, LCD_4);
+        LL_GPIO_ResetOutputPin(LCD_PORT4, LCD_4);
 
     if((byte >> 5 ) & 1)
-        HAL_GPIO_WritePin(LCD_PORT56, LCD_5);
+        LL_GPIO_SetOutputPin(LCD_PORT56, LCD_5);
     else
-        HAL_GPIO_WritePin(LCD_PORT56, LCD_5);
+        LL_GPIO_ResetOutputPin(LCD_PORT56, LCD_5);
 
     if((byte >> 6 ) & 1)
-        HAL_GPIO_WritePin(LCD_PORT56, LCD_6);
+        LL_GPIO_SetOutputPin(LCD_PORT56, LCD_6);
     else
-        HAL_GPIO_WritePin(LCD_PORT56, LCD_6);
+        LL_GPIO_ResetOutputPin(LCD_PORT56, LCD_6);
 
     if((byte >> 7 ) & 1)
-        HAL_GPIO_WritePin(LCD_PORT7, LCD_7);
+        LL_GPIO_SetOutputPin(LCD_PORT7, LCD_7);
     else
-        HAL_GPIO_WritePin(LCD_PORT7, LCD_7);
+        LL_GPIO_ResetOutputPin(LCD_PORT7, LCD_7);
 
     if(rs)
-        HAL_GPIO_WritePin(RS_PORT, LCD_RS);
+        LL_GPIO_SetOutputPin(RS_PORT, LCD_RS);
     else
-        HAL_GPIO_WritePin(RS_PORT, LCD_RS);
+        LL_GPIO_ResetOutputPin(RS_PORT, LCD_RS);
 
     lcd_clock();
 
     // Write first nibble
 
     if(byte & 1)
-        HAL_GPIO_WritePin(LCD_PORT4, LCD_4);
+        LL_GPIO_SetOutputPin(LCD_PORT4, LCD_4);
     else
-        HAL_GPIO_WritePin(LCD_PORT4, LCD_4);
+        LL_GPIO_ResetOutputPin(LCD_PORT4, LCD_4);
 
     if((byte >> 1 ) & 1)
-        HAL_GPIO_WritePin(LCD_PORT56, LCD_5);
+        LL_GPIO_SetOutputPin(LCD_PORT56, LCD_5);
     else
-        HAL_GPIO_WritePin(LCD_PORT56, LCD_5);
+        LL_GPIO_ResetOutputPin(LCD_PORT56, LCD_5);
 
     if((byte >> 2 ) & 1)
-        HAL_GPIO_WritePin(LCD_PORT56, LCD_6);
+        LL_GPIO_SetOutputPin(LCD_PORT56, LCD_6);
     else
-        HAL_GPIO_WritePin(LCD_PORT56, LCD_6);
+        LL_GPIO_ResetOutputPin(LCD_PORT56, LCD_6);
 
     if((byte >> 3 ) & 1)
-        HAL_GPIO_WritePin(LCD_PORT7, LCD_7);
+        LL_GPIO_SetOutputPin(LCD_PORT7, LCD_7);
     else
-        HAL_GPIO_WritePin(LCD_PORT7, LCD_7);
+        LL_GPIO_ResetOutputPin(LCD_PORT7, LCD_7);
 
     lcd_clock();
 }

@@ -113,8 +113,7 @@ int main(void)
   MX_USART3_UART_Init();
   MX_USB_OTG_FS_PCD_Init();
   /* USER CODE BEGIN 2 */
-  HAL_GPIO_WritePin(GPIOA, Led_LCD_Pin);
-  SysTick_Config(0xffffff);
+ LL_GPIO_WriteOutputPort(GPIOA, Led_LCD_Pin);
  lcd_reset();
  lcd_display_settings(1,0,0);
  lcd_clear();
@@ -150,68 +149,69 @@ void snake_up2(int i){
 	lcd_write(2, 1);
 }
 
-// lcd_cgram_address(0);
-//  lcd_write(0x1F, 1);
-//  lcd_write(0x00, 1);
-//  lcd_write(0x06, 1);
-//  lcd_write(0x08, 1);
-//  lcd_write(0x06, 1);
-//  lcd_write(0x00, 1);
-//  lcd_write(0x1F, 1);
-//  lcd_write(0x00, 1);
-//
-//
-//  lcd_cgram_address(8);
-//   lcd_write(0x00, 1);
-//   lcd_write(0x1F, 1);
-//   lcd_write(0x00, 1);
-//   lcd_write(0x06, 1);
-//   lcd_write(0x08, 1);
-//   lcd_write(0x06, 1);
-//   lcd_write(0x00, 1);
-//   lcd_write(0x1F, 1);
-//
-//   lcd_cgram_address(16);
-//    lcd_write(0x1e, 1);
-//    lcd_write(0x01, 1);
-//    lcd_write(0x05, 1);
-//    lcd_write(0x05, 1);
-//    lcd_write(0x01, 1);
-//    lcd_write(0x01, 1);
-//    lcd_write(0x1e, 1);
-//    lcd_write(0x00, 1);
-//
-//    lcd_cgram_address(24);
-//    lcd_write(0x07, 1);
-//    lcd_write(0x08, 1);
-//    lcd_write(0x10, 1);
-//    lcd_write(0x10, 1);
-//    lcd_write(0x10, 1);
-//    lcd_write(0x10, 1);
-//    lcd_write(0x08, 1);
-//    lcd_write(0x07, 1);
+ lcd_cgram_address(0);
+  lcd_write(0x1F, 1);
+  lcd_write(0x00, 1);
+  lcd_write(0x06, 1);
+  lcd_write(0x08, 1);
+  lcd_write(0x06, 1);
+  lcd_write(0x00, 1);
+  lcd_write(0x1F, 1);
+  lcd_write(0x00, 1);
 
-	lcd_cgram_address(0); // se selecciona la dirección 0 de la CGRAM, patrón con código 0
-	lcd_write(0x15, 1); //se va cargando con los bytes del patrón de cada fila de la CGRAM
-	lcd_write(0x15, 1);
-	lcd_write(0xe, 1);
-	lcd_write(0x4, 1);
-	lcd_write(0x4, 1);
-	lcd_write(0xa, 1);
-	lcd_write(0x11, 1);
-	lcd_write(0x00, 1);
-	lcd_cgram_address(8); //se selecciona la dirección 8 de la CGRAM, patrón con código 1
-	lcd_write(0x4, 1); // se va cargando con los bytes del patrón de cada fila de la CGRAM
-	lcd_write(0x4, 1);
-	lcd_write(0xe, 1);
-	lcd_write(0x15, 1);
-	lcd_write(0x15, 1);
-	lcd_write(0xa, 1);
-	lcd_write(0xa, 1);
-	lcd_write(0x00, 1);
+
+  lcd_cgram_address(8);
+   lcd_write(0x00, 1);
+   lcd_write(0x1F, 1);
+   lcd_write(0x00, 1);
+   lcd_write(0x06, 1);
+   lcd_write(0x08, 1);
+   lcd_write(0x06, 1);
+   lcd_write(0x00, 1);
+   lcd_write(0x1F, 1);
+
+   lcd_cgram_address(16);
+    lcd_write(0x1e, 1);
+    lcd_write(0x01, 1);
+    lcd_write(0x05, 1);
+    lcd_write(0x05, 1);
+    lcd_write(0x01, 1);
+    lcd_write(0x01, 1);
+    lcd_write(0x1e, 1);
+    lcd_write(0x00, 1);
+
+    lcd_cgram_address(24);
+    lcd_write(0x07, 1);
+    lcd_write(0x08, 1);
+    lcd_write(0x10, 1);
+    lcd_write(0x10, 1);
+    lcd_write(0x10, 1);
+    lcd_write(0x10, 1);
+    lcd_write(0x08, 1);
+    lcd_write(0x07, 1);
+
+//	lcd_cgram_address(0); // se selecciona la dirección 0 de la CGRAM, patrón con código 0
+//	lcd_write(0x15, 1); //se va cargando con los bytes del patrón de cada fila de la CGRAM
+//	lcd_write(0x15, 1);
+//	lcd_write(0xe, 1);
+//	lcd_write(0x4, 1);
+//	lcd_write(0x4, 1);
+//	lcd_write(0xa, 1);
+//	lcd_write(0x11, 1);
+//	lcd_write(0x00, 1);
+//
+//	lcd_cgram_address(8); //se selecciona la dirección 8 de la CGRAM, patrón con código 1
+//	lcd_write(0x4, 1); // se va cargando con los bytes del patrón de cada fila de la CGRAM
+//	lcd_write(0x4, 1);
+//	lcd_write(0xe, 1);
+//	lcd_write(0x15, 1);
+//	lcd_write(0x15, 1);
+//	lcd_write(0xa, 1);
+//	lcd_write(0xa, 1);
+//	lcd_write(0x00, 1);
 
    lcd_display_address(0);
-   int contador = 0, estado_mu = 0;
+
 
   while (1)
   {
@@ -219,30 +219,40 @@ void snake_up2(int i){
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  contador++;
-	  if(contador==10 && estado_mu==0){
-		  moveToXY(1,7); //sitúa el cursor en la posición fila 1 columna 7, primer muñeco
-		  lcd_write(0,1); //escribe el nuevo patrón 0 en la DDRAM
-		  moveToXY(1,8); //sitúa el cursor en la posición fila 1 columna 7, segundo muñeco
-		  lcd_write(0,1);
-		  contador=0;
-		  estado_mu=1;
+	  for(int l = 0; l<32; l++){
+
+		  lcd_clear();
+		  snake_up2(l);
+		  LL_mDelay(300);
+		  lcd_clear();
+		  snake_down2(l);
+		  LL_mDelay(300);
 	  }
-	  if(contador==10 && estado_mu==1){
-	  moveToXY(1,7);
-	  lcd_write(1,1); //escribe el nuevo patrón 0 en la DDRAM
-	  moveToXY(1,8);
-	  lcd_write(1,1);
-	  contador=0;
-	  estado_mu=0;
-	  }
-	  //TAREA B
-//	  if(LL_GPIO_IsInputPinSet(BUTTON_EXTI13_GPIO_Port, BUTTON_EXTI13_Pin)){
-//	  LL_GPIO_SetOutputPin(LED2_GPIO_Port, LED2_Pin);
-//	  }else{
-//	  LL_GPIO_ResetOutputPin(LED2_GPIO_Port, LED2_Pin);
+
+//	  contador++;
+//	  if(contador==10 && estado_mu==0){
+//		  moveToXY(1,7); //sitúa el cursor en la posición fila 1 columna 7, primer muñeco
+//		  lcd_write(0,1); //escribe el nuevo patrón 0 en la DDRAM
+//		  moveToXY(1,8); //sitúa el cursor en la posición fila 1 columna 7, segundo muñeco
+//		  lcd_write(0,1);
+//		  contador=0;
+//		  estado_mu=1;
 //	  }
-	  HAL_Delay(100);
+//	  if(contador==10 && estado_mu==1){
+//	  moveToXY(1,7);
+//	  lcd_write(1,1); //escribe el nuevo patrón 0 en la DDRAM
+//	  moveToXY(1,8);
+//	  lcd_write(1,1);
+//	  contador=0;
+//	  estado_mu=0;
+//	  }
+//	  //TAREA B
+////	  if(LL_GPIO_IsInputPinSet(BUTTON_EXTI13_GPIO_Port, BUTTON_EXTI13_Pin)){
+////	  LL_GPIO_SetOutputPin(LED2_GPIO_Port, LED2_Pin);
+////	  }else{
+////	  LL_GPIO_ResetOutputPin(LED2_GPIO_Port, LED2_Pin);
+////	  }
+//	  HAL_Delay(100);
 
 
 
@@ -594,30 +604,30 @@ static void MX_GPIO_Init(void)
   LL_AHB2_GRP1_EnableClock(LL_AHB2_GRP1_PERIPH_GPIOD);
 
   /**/
-  HAL_GPIO_WritePin(GPIOE, M24SR64_Y_RF_DISABLE_Pin|M24SR64_Y_GPO_Pin|ISM43362_RST_Pin);
+  LL_GPIO_ResetOutputPin(GPIOE, M24SR64_Y_RF_DISABLE_Pin|M24SR64_Y_GPO_Pin|ISM43362_RST_Pin);
 
   /**/
-  HAL_GPIO_WritePin(GPIOA, Led_LCD_Pin|D4_LCD_Pin|D7_LCD_Pin|SPBTLE_RF_RST_Pin
+  LL_GPIO_ResetOutputPin(GPIOA, Led_LCD_Pin|D4_LCD_Pin|D7_LCD_Pin|SPBTLE_RF_RST_Pin
                           |E_LCD_Pin);
 
   /**/
-  HAL_GPIO_WritePin(GPIOB, D6_LCD_Pin|RS_LCD_Pin|ISM43362_BOOT0_Pin|ISM43362_WAKEUP_Pin
+  LL_GPIO_ResetOutputPin(GPIOB, D6_LCD_Pin|RS_LCD_Pin|ISM43362_BOOT0_Pin|ISM43362_WAKEUP_Pin
                           |LED2_Pin|SPSGRF_915_SDN_Pin|D5_LCD_Pin);
 
   /**/
-  HAL_GPIO_WritePin(GPIOD, USB_OTG_FS_PWR_EN_Pin|PMOD_RESET_Pin|STSAFE_A100_RESET_Pin);
+  LL_GPIO_ResetOutputPin(GPIOD, USB_OTG_FS_PWR_EN_Pin|PMOD_RESET_Pin|STSAFE_A100_RESET_Pin);
 
   /**/
-  HAL_GPIO_WritePin(GPIOC, VL53L0X_XSHUT_Pin|LED3_WIFI__LED4_BLE_Pin);
+  LL_GPIO_ResetOutputPin(GPIOC, VL53L0X_XSHUT_Pin|LED3_WIFI__LED4_BLE_Pin);
 
   /**/
-  HAL_GPIO_WritePin(SPBTLE_RF_SPI3_CSN_GPIO_Port, SPBTLE_RF_SPI3_CSN_Pin);
+  LL_GPIO_SetOutputPin(SPBTLE_RF_SPI3_CSN_GPIO_Port, SPBTLE_RF_SPI3_CSN_Pin);
 
   /**/
-  HAL_GPIO_WritePin(SPSGRF_915_SPI3_CSN_GPIO_Port, SPSGRF_915_SPI3_CSN_Pin);
+  LL_GPIO_SetOutputPin(SPSGRF_915_SPI3_CSN_GPIO_Port, SPSGRF_915_SPI3_CSN_Pin);
 
   /**/
-  HAL_GPIO_WritePin(ISM43362_SPI3_CSN_GPIO_Port, ISM43362_SPI3_CSN_Pin);
+  LL_GPIO_SetOutputPin(ISM43362_SPI3_CSN_GPIO_Port, ISM43362_SPI3_CSN_Pin);
 
   /**/
   GPIO_InitStruct.Pin = M24SR64_Y_RF_DISABLE_Pin|M24SR64_Y_GPO_Pin|ISM43362_RST_Pin|ISM43362_SPI3_CSN_Pin;

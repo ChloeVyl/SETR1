@@ -24,4 +24,6 @@
 	</section>
 	<section name="FileSystemExportWizard">
 	</section>
+	<section name="FileSystemImportWizard">
+	</section>
 </section>

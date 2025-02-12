@@ -183,7 +183,7 @@ void PendSV_Handler(void)
 void SysTick_Handler(void)
 {
   /* USER CODE BEGIN SysTick_IRQn 0 */
-	LL_GPIO_TogglePin(LED2_GPIO_Port, LED2_Pin);
+//	LL_GPIO_TogglePin(LED2_GPIO_Port, LED2_Pin);
 
 //	static char estado = 0;
 //	if(estado==1){

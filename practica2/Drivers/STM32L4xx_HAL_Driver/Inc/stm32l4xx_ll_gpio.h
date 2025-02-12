@@ -982,7 +982,7 @@ __STATIC_INLINE void LL_GPIO_SetOutputPin(GPIO_TypeDef *GPIOx, uint32_t PinMask)
   *         @arg @ref LL_GPIO_PIN_ALL
   * @retval None
   */
-__STATIC_INLINE void HAL_GPIO_WritePin(GPIO_TypeDef *GPIOx, uint32_t PinMask)
+__STATIC_INLINE void LL_GPIO_ResetOutputPin(GPIO_TypeDef *GPIOx, uint32_t PinMask)
 {
   WRITE_REG(GPIOx->BRR, PinMask);
 }
