@@ -1,28 +1,6 @@
-00:10:44 **** Incremental Build of configuration Debug for project practica2F3 ****
+21:16:33 **** Incremental Build of configuration Debug for project practica2F3 ****
 make -j16 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L475xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:117:3: warning: implicit declaration of function 'lcd_reset' [-Wimplicit-function-declaration]
-  117 |   lcd_reset();
-      |   ^~~~~~~~~
-../Core/Src/main.c:118:3: warning: implicit declaration of function 'lcd_display_settings' [-Wimplicit-function-declaration]
-  118 |   lcd_display_settings(1,0,0);
-      |   ^~~~~~~~~~~~~~~~~~~~
-../Core/Src/main.c:119:3: warning: implicit declaration of function 'lcd_clear' [-Wimplicit-function-declaration]
-  119 |   lcd_clear();
-      |   ^~~~~~~~~
-../Core/Src/main.c:121:9: warning: implicit declaration of function 'lcd_cgram_address' [-Wimplicit-function-declaration]
-  121 |         lcd_cgram_address(0); // se selecciona la dirección 0 de la CGRAM, patrón con código 0
-      |         ^~~~~~~~~~~~~~~~~
-../Core/Src/main.c:122:9: warning: implicit declaration of function 'lcd_write' [-Wimplicit-function-declaration]
-  122 |         lcd_write(0x15, 1); //se va cargando con los bytes del patrón de cada fila de la CGRAM
-      |         ^~~~~~~~~
-../Core/Src/main.c:141:5: warning: implicit declaration of function 'lcd_display_address' [-Wimplicit-function-declaration]
-  141 |     lcd_display_address(0);
-      |     ^~~~~~~~~~~~~~~~~~~
-../Core/Src/main.c:151:11: warning: implicit declaration of function 'moveToXY' [-Wimplicit-function-declaration]
-  151 |           moveToXY(1, 7);
-      |           ^~~~~~~~
 arm-none-eabi-gcc -o "practica2F3.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Usuario\Documents\Universidad\3ro\STR 1\Practicas\Workspace\practica2F3\STM32L475VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="practica2F3.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: practica2F3.elf
  
@@ -35,5 +13,5 @@ Finished building: default.size.stdout
 Finished building: practica2F3.list
  
 
-00:10:45 Build Finished. 0 errors, 7 warnings. (took 845ms)
+21:16:34 Build Finished. 0 errors, 0 warnings. (took 1s.418ms)
 

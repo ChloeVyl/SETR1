@@ -27,25 +27,25 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  11 .ARM.attributes 00000030  00000000  00000000  0000600c  2**0
                   CONTENTS, READONLY
- 12 .debug_info   000175f8  00000000  00000000  0000603c  2**0
+ 12 .debug_info   0001756e  00000000  00000000  0000603c  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 00002f6e  00000000  00000000  0001d634  2**0
+ 13 .debug_abbrev 00002f6a  00000000  00000000  0001d5aa  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_aranges 000015c8  00000000  00000000  000205a8  2**3
+ 14 .debug_aranges 000015c8  00000000  00000000  00020518  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_rnglists 000010e9  00000000  00000000  00021b70  2**0
+ 15 .debug_rnglists 000010e9  00000000  00000000  00021ae0  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  00027514  00000000  00000000  00022c59  2**0
+ 16 .debug_macro  0002751e  00000000  00000000  00022bc9  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   00019dab  00000000  00000000  0004a16d  2**0
+ 17 .debug_line   00019db6  00000000  00000000  0004a0e7  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    000efd31  00000000  00000000  00063f18  2**0
+ 18 .debug_str    000efd31  00000000  00000000  00063e9d  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  00153c49  2**0
+ 19 .comment      00000043  00000000  00000000  00153bce  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00005d34  00000000  00000000  00153c8c  2**2
+ 20 .debug_frame  00005d34  00000000  00000000  00153c14  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 0000007f  00000000  00000000  001599c0  2**0
+ 21 .debug_line_str 0000007f  00000000  00000000  00159948  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -1076,7 +1076,7 @@ int main(void)
 	  HAL_Delay(300);
  8000994:	f44f 7096 	mov.w	r0, #300	@ 0x12c
  8000998:	f000 ff0c 	bl	80017b4 <HAL_Delay>
-  {
+	  moveToXY(1, 7);
  800099c:	bf00      	nop
  800099e:	e7d5      	b.n	800094c <main+0xdc>
 
