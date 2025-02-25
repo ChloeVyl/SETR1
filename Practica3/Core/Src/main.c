@@ -44,6 +44,8 @@
 /* Private variables ---------------------------------------------------------*/
 I2C_HandleTypeDef hi2c2;
 
+UART_HandleTypeDef huart1;
+
 /* USER CODE BEGIN PV */
 
 /* USER CODE END PV */
@@ -52,13 +54,24 @@ I2C_HandleTypeDef hi2c2;
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_I2C2_Init(void);
+static void MX_USART1_UART_Init(void);
 /* USER CODE BEGIN PFP */
-
+void maximos(float T, float H, float P);
+void minimos(float T, float H, float P);
+void resetVG(float T, float P, float H);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+uint8_t rxByte;
+float minP;
+float minT;
+float minH;
+float maxP;
+float maxT;
+float maxH;
+int modo = 4;
+int unidad = 0;
 /* USER CODE END 0 */
 
 /**
@@ -91,6 +104,7 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_I2C2_Init();
+  MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
 
   lcd_reset();
@@ -98,6 +112,22 @@ int main(void)
   lcd_clear();
   LPS22_Init();
   HTS221_Init();
+  HAL_UART_Receive_IT(&huart1, &rxByte, 1);
+
+ THSample ths;
+ ths = HTS221_Read();
+ float press;
+ press = LPS22_ReadPress();
+
+ maxH = ths.hum;
+ maxT = ths.temp;
+ maxP = press;
+
+ minH = ths.hum;
+ minT = ths.temp;
+ minP = press;
+
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -107,32 +137,125 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+	uint8_t str[20];
+
 	THSample ths;
 	ths = HTS221_Read();
 	float press;
 	press = LPS22_ReadPress();
 
-	lcd_print("La presion es de:");
-	moveToXY(1, 0);
-	writeIntegerToLCD(press);
-	lcd_print("hPA");
-	HAL_Delay(5000);
-	lcd_clear();
-	lcd_print("La humedad es de:");
-	moveToXY(1, 0);
-	writeIntegerToLCD(ths.hum);
-	lcd_print("%");
-	HAL_Delay(5000);
-	lcd_clear();
-	lcd_print("La temperatura es de:");
-	moveToXY(1, 0);
-	writeIntegerToLCD(ths.temp);
-	lcd_print("C");
-	HAL_Delay(10000);
-	lcd_clear();
-	lcd_print("Borrando...");
-	HAL_Delay(400);
-	lcd_clear();
+	maximos(ths.temp, ths.hum, press);
+	minimos(ths.temp, ths.hum, press);
+
+	if(modo == 0){
+		if(unidad==0){
+			sprintf(str, "Pres: %.1fhPA", maxP);
+			moveToXY(0, 0);
+			lcd_print(str);
+
+			sprintf(str, "T:%.1fC H:%.1f\%%", maxT, maxH);
+			moveToXY(1, 0);
+			lcd_print(str);
+			HAL_Delay(500);
+
+			printf("Maximos - > Pres: %.1fhPA T:%.1fC H:%.1f%%\r\n", maxP, maxT, maxH);
+		}else{
+			sprintf(str, "Pres: %.1fmmHg", maxP*0.750);
+			moveToXY(0, 0);
+			lcd_print(str);
+
+			sprintf(str, "T:%.1fF H:%.1f\%%", (maxT*9/5)+32, maxH);
+			moveToXY(1, 0);
+			lcd_print(str);
+			HAL_Delay(500);
+
+			printf("Maximos - > Pres: %.1fmmHg T:%.1fF H:%.1f%%\r\n", maxP*0.750, (maxT*9/5)+32, maxH);
+		}
+	}else if(modo == 1){
+		if(unidad == 0){
+			sprintf(str, "Pres: %.1fhPA", minP);
+			moveToXY(0, 0);
+			lcd_print(str);
+
+			sprintf(str, "T:%.1fC H:%.1f\%%", minT, minH);
+			moveToXY(1, 0);
+			lcd_print(str);
+			HAL_Delay(500);
+
+			printf("Minimos - > Pres: %.1fhPA T:%.1fC H:%.1f%%\r\n", minP, minT, minH);
+		}else{
+			sprintf(str, "Pres: %.1fmmHg", minP*0.750);
+			moveToXY(0, 0);
+			lcd_print(str);
+
+			sprintf(str, "T:%.1fF H:%.1f\%%", (minT*9/5)+32, minH);
+			moveToXY(1, 0);
+			lcd_print(str);
+			HAL_Delay(500);
+
+			printf("Minimos - > Pres: %.1fmmHg T:%.1fF H:%.1f%%\r\n", minP*0.750, (minT*9/5)+32, minH);
+		}
+	}else if(modo == 2){
+		resetVG(ths.temp, press, ths.hum);
+	}else{
+		if(unidad == 0){
+			sprintf(str, "Pres: %.1fhPA", press);
+			moveToXY(0, 0);
+			lcd_print(str);
+
+			sprintf(str, "T:%.1fC H:%.1f\%%", ths.temp, ths.hum);
+			moveToXY(1, 0);
+			lcd_print(str);
+			HAL_Delay(500);
+
+			printf("Pres: %.1fhPA T:%.1fC H:%.1f%%\r\n", press, ths.temp, ths.hum);
+		} else {
+			sprintf(str, "Pres: %.1fmmHg", press*0.750);
+			moveToXY(0, 0);
+			lcd_print(str);
+
+			sprintf(str, "T:%.1fC H:%.1f\%%", (ths.temp*9/5)+32, ths.hum);
+			moveToXY(1, 0);
+			lcd_print(str);
+			HAL_Delay(500);
+
+			printf("Pres: %.1fmmHg T:%.1fF H:%.1f%%\r\n", press*0.750, (ths.temp*9/5)+32, ths.hum);
+		}
+	}
+//	sprintf(str, "Pres: %.1fhPA", press);
+//	moveToXY(0, 0);
+//	lcd_print(str);
+//
+//	sprintf(str, "T:%.1fC H:%.1f\%%", ths.temp, ths.hum);
+//	moveToXY(1, 0);
+//	lcd_print(str);
+//	HAL_Delay(500);
+//
+//	printf("Pres: %.1fhPA T:%.1fC H:%.1f%%\r\n", press, ths.temp, ths.hum);
+
+//	HAL_UART_Transmit(&huart1, "hola\n\r", 6, 1000);
+
+//	lcd_print("La presion es de:");
+//	moveToXY(1, 0);
+//	writeIntegerToLCD(press);
+//	lcd_print("hPA");
+//	HAL_Delay(5000);
+//	lcd_clear();
+//	lcd_print("La humedad es de:");
+//	moveToXY(1, 0);
+//	writeIntegerToLCD(ths.hum);
+//	lcd_print("%");
+//	HAL_Delay(5000);
+//	lcd_clear();
+//	lcd_print("La temperatura es de:");
+//	moveToXY(1, 0);
+//	writeIntegerToLCD(ths.temp);
+//	lcd_print("C");
+//	HAL_Delay(10000);
+//	lcd_clear();
+//	lcd_print("Borrando...");
+//	HAL_Delay(400);
+//	lcd_clear();
   }
   /* USER CODE END 3 */
 }
@@ -236,6 +359,41 @@ static void MX_I2C2_Init(void)
 }
 
 /**
+  * @brief USART1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_USART1_UART_Init(void)
+{
+
+  /* USER CODE BEGIN USART1_Init 0 */
+
+  /* USER CODE END USART1_Init 0 */
+
+  /* USER CODE BEGIN USART1_Init 1 */
+
+  /* USER CODE END USART1_Init 1 */
+  huart1.Instance = USART1;
+  huart1.Init.BaudRate = 115200;
+  huart1.Init.WordLength = UART_WORDLENGTH_8B;
+  huart1.Init.StopBits = UART_STOPBITS_1;
+  huart1.Init.Parity = UART_PARITY_NONE;
+  huart1.Init.Mode = UART_MODE_TX_RX;
+  huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart1.Init.OverSampling = UART_OVERSAMPLING_16;
+  huart1.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
+  huart1.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
+  if (HAL_UART_Init(&huart1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN USART1_Init 2 */
+
+  /* USER CODE END USART1_Init 2 */
+
+}
+
+/**
   * @brief GPIO Initialization Function
   * @param None
   * @retval None
@@ -275,7 +433,68 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+int __io_putchar(int ch)
+{
+	  uint8_t c[1];
+	  c[0] = ch & 0x00FF;
+	  HAL_UART_Transmit(&huart1, &*c, 1, 10);
+	  return ch;
+}
 
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
+//1 - Procesar Dato
+	if(rxByte == 'm'){
+		modo = 0;
+	} else if(rxByte == 'n'){
+		modo = 1;
+	} else if(rxByte == 'c'){
+		modo = 2;
+	} else if(rxByte == 'u'){
+		if (unidad == 1){
+			unidad = 0;
+		}else{
+			unidad = 1;
+		}
+
+	} else{
+		modo = 4;
+	}
+//2 - Esperar siguiente dato
+	HAL_UART_Receive_IT(&huart1, &rxByte, 1);
+}
+
+void maximos(float T, float H, float P){
+	if(maxT< T){
+		maxT = T;
+	}
+	if(maxH< H){
+		maxH = H;
+	}
+	if(maxP< P){
+		maxP = P;
+	}
+}
+
+void minimos(float T, float H, float P){
+	if(minT> T){
+		minT = T;
+	}
+	if(minH> H){
+		minH = H;
+	}
+	if(minP> P){
+		minP = P;
+	}
+}
+
+void resetVG(float T, float P, float H){
+	minH = H;
+	minP = P;
+	minT = T;
+	maxH = H;
+	maxP = P;
+	maxT = T;
+}
 /* USER CODE END 4 */
 
 /**
