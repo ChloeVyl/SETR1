@@ -1,4 +1,4 @@
-
+S
 #include "stm32l4xx_hal.h" //Libreria HAL para Read/Write
 extern I2C_HandleTypeDef hi2c2; //Handle del puerto I2C
 
