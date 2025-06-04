@@ -1,10 +1,244 @@
-21:17:04 **** Incremental Build of configuration Debug for project Practica3 ****
+21:41:11 **** Build of configuration Debug for project Practica3 ****
 make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L475xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:156:25: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
+  156 |                         sprintf(str, "Pres: %.1fhPA", maxP);
+      |                         ^~~~~~~
+../Core/Src/main.c:27:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+   26 | #include "HTS221.h"
+  +++ |+#include <stdio.h>
+   27 | /* USER CODE END Includes */
+../Core/Src/main.c:156:25: warning: incompatible implicit declaration of built-in function 'sprintf' [-Wbuiltin-declaration-mismatch]
+  156 |                         sprintf(str, "Pres: %.1fhPA", maxP);
+      |                         ^~~~~~~
+../Core/Src/main.c:156:25: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+../Core/Src/main.c:156:33: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  156 |                         sprintf(str, "Pres: %.1fhPA", maxP);
+      |                                 ^~~
+      |                                 |
+      |                                 uint8_t * {aka unsigned char *}
+../Core/Src/main.c:156:33: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:158:35: warning: pointer targets in passing argument 1 of 'lcd_print' differ in signedness [-Wpointer-sign]
+  158 |                         lcd_print(str);
+      |                                   ^~~
+      |                                   |
+      |                                   uint8_t * {aka unsigned char *}
+In file included from ../Core/Src/main.c:24:
+../Core/Inc/hd44780.h:23:21: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+   23 | void lcd_print(char string[]);
+      |                ~~~~~^~~~~~~~
+../Core/Src/main.c:160:33: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  160 |                         sprintf(str, "T:%.1fC H:%.1f\%%", maxT, maxH);
+      |                                 ^~~
+      |                                 |
+      |                                 uint8_t * {aka unsigned char *}
+../Core/Src/main.c:160:33: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:162:35: warning: pointer targets in passing argument 1 of 'lcd_print' differ in signedness [-Wpointer-sign]
+  162 |                         lcd_print(str);
+      |                                   ^~~
+      |                                   |
+      |                                   uint8_t * {aka unsigned char *}
+../Core/Inc/hd44780.h:23:21: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+   23 | void lcd_print(char string[]);
+      |                ~~~~~^~~~~~~~
+../Core/Src/main.c:165:25: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+  165 |                         printf("Maximos - > Pres: %.1fhPA T:%.1fC H:%.1f%%\r\n", maxP, maxT, maxH);
+      |                         ^~~~~~
+../Core/Src/main.c:165:25: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/main.c:165:25: warning: incompatible implicit declaration of built-in function 'printf' [-Wbuiltin-declaration-mismatch]
+../Core/Src/main.c:165:25: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/main.c:167:25: warning: incompatible implicit declaration of built-in function 'sprintf' [-Wbuiltin-declaration-mismatch]
+  167 |                         sprintf(str, "Pres: %.1fmmHg", maxP*0.750);
+      |                         ^~~~~~~
+../Core/Src/main.c:167:25: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+../Core/Src/main.c:167:33: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  167 |                         sprintf(str, "Pres: %.1fmmHg", maxP*0.750);
+      |                                 ^~~
+      |                                 |
+      |                                 uint8_t * {aka unsigned char *}
+../Core/Src/main.c:167:33: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:169:35: warning: pointer targets in passing argument 1 of 'lcd_print' differ in signedness [-Wpointer-sign]
+  169 |                         lcd_print(str);
+      |                                   ^~~
+      |                                   |
+      |                                   uint8_t * {aka unsigned char *}
+../Core/Inc/hd44780.h:23:21: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+   23 | void lcd_print(char string[]);
+      |                ~~~~~^~~~~~~~
+../Core/Src/main.c:171:33: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  171 |                         sprintf(str, "T:%.1fF H:%.1f\%%", (maxT*9/5)+32, maxH);
+      |                                 ^~~
+      |                                 |
+      |                                 uint8_t * {aka unsigned char *}
+../Core/Src/main.c:171:33: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:173:35: warning: pointer targets in passing argument 1 of 'lcd_print' differ in signedness [-Wpointer-sign]
+  173 |                         lcd_print(str);
+      |                                   ^~~
+      |                                   |
+      |                                   uint8_t * {aka unsigned char *}
+../Core/Inc/hd44780.h:23:21: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+   23 | void lcd_print(char string[]);
+      |                ~~~~~^~~~~~~~
+../Core/Src/main.c:176:25: warning: incompatible implicit declaration of built-in function 'printf' [-Wbuiltin-declaration-mismatch]
+  176 |                         printf("Maximos - > Pres: %.1fmmHg T:%.1fF H:%.1f%%\r\n", maxP*0.750, (maxT*9/5)+32, maxH);
+      |                         ^~~~~~
+../Core/Src/main.c:176:25: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/main.c:180:25: warning: incompatible implicit declaration of built-in function 'sprintf' [-Wbuiltin-declaration-mismatch]
+  180 |                         sprintf(str, "Pres: %.1fhPA", minP);
+      |                         ^~~~~~~
+../Core/Src/main.c:180:25: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+../Core/Src/main.c:180:33: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  180 |                         sprintf(str, "Pres: %.1fhPA", minP);
+      |                                 ^~~
+      |                                 |
+      |                                 uint8_t * {aka unsigned char *}
+../Core/Src/main.c:180:33: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:182:35: warning: pointer targets in passing argument 1 of 'lcd_print' differ in signedness [-Wpointer-sign]
+  182 |                         lcd_print(str);
+      |                                   ^~~
+      |                                   |
+      |                                   uint8_t * {aka unsigned char *}
+../Core/Inc/hd44780.h:23:21: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+   23 | void lcd_print(char string[]);
+      |                ~~~~~^~~~~~~~
+../Core/Src/main.c:184:33: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  184 |                         sprintf(str, "T:%.1fC H:%.1f\%%", minT, minH);
+      |                                 ^~~
+      |                                 |
+      |                                 uint8_t * {aka unsigned char *}
+../Core/Src/main.c:184:33: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:186:35: warning: pointer targets in passing argument 1 of 'lcd_print' differ in signedness [-Wpointer-sign]
+  186 |                         lcd_print(str);
+      |                                   ^~~
+      |                                   |
+      |                                   uint8_t * {aka unsigned char *}
+../Core/Inc/hd44780.h:23:21: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+   23 | void lcd_print(char string[]);
+      |                ~~~~~^~~~~~~~
+../Core/Src/main.c:189:25: warning: incompatible implicit declaration of built-in function 'printf' [-Wbuiltin-declaration-mismatch]
+  189 |                         printf("Minimos - > Pres: %.1fhPA T:%.1fC H:%.1f%%\r\n", minP, minT, minH);
+      |                         ^~~~~~
+../Core/Src/main.c:189:25: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/main.c:191:25: warning: incompatible implicit declaration of built-in function 'sprintf' [-Wbuiltin-declaration-mismatch]
+  191 |                         sprintf(str, "Pres: %.1fmmHg", minP*0.750);
+      |                         ^~~~~~~
+../Core/Src/main.c:191:25: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+../Core/Src/main.c:191:33: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  191 |                         sprintf(str, "Pres: %.1fmmHg", minP*0.750);
+      |                                 ^~~
+      |                                 |
+      |                                 uint8_t * {aka unsigned char *}
+../Core/Src/main.c:191:33: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:193:35: warning: pointer targets in passing argument 1 of 'lcd_print' differ in signedness [-Wpointer-sign]
+  193 |                         lcd_print(str);
+      |                                   ^~~
+      |                                   |
+      |                                   uint8_t * {aka unsigned char *}
+../Core/Inc/hd44780.h:23:21: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+   23 | void lcd_print(char string[]);
+      |                ~~~~~^~~~~~~~
+../Core/Src/main.c:195:33: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  195 |                         sprintf(str, "T:%.1fF H:%.1f\%%", (minT*9/5)+32, minH);
+      |                                 ^~~
+      |                                 |
+      |                                 uint8_t * {aka unsigned char *}
+../Core/Src/main.c:195:33: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:197:35: warning: pointer targets in passing argument 1 of 'lcd_print' differ in signedness [-Wpointer-sign]
+  197 |                         lcd_print(str);
+      |                                   ^~~
+      |                                   |
+      |                                   uint8_t * {aka unsigned char *}
+../Core/Inc/hd44780.h:23:21: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+   23 | void lcd_print(char string[]);
+      |                ~~~~~^~~~~~~~
+../Core/Src/main.c:200:25: warning: incompatible implicit declaration of built-in function 'printf' [-Wbuiltin-declaration-mismatch]
+  200 |                         printf("Minimos - > Pres: %.1fmmHg T:%.1fF H:%.1f%%\r\n", minP*0.750, (minT*9/5)+32, minH);
+      |                         ^~~~~~
+../Core/Src/main.c:200:25: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/main.c:206:25: warning: incompatible implicit declaration of built-in function 'sprintf' [-Wbuiltin-declaration-mismatch]
+  206 |                         sprintf(str, "Pres: %.1fhPA", press);
+      |                         ^~~~~~~
+../Core/Src/main.c:206:25: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+../Core/Src/main.c:206:33: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  206 |                         sprintf(str, "Pres: %.1fhPA", press);
+      |                                 ^~~
+      |                                 |
+      |                                 uint8_t * {aka unsigned char *}
+../Core/Src/main.c:206:33: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:208:35: warning: pointer targets in passing argument 1 of 'lcd_print' differ in signedness [-Wpointer-sign]
+  208 |                         lcd_print(str);
+      |                                   ^~~
+      |                                   |
+      |                                   uint8_t * {aka unsigned char *}
+../Core/Inc/hd44780.h:23:21: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+   23 | void lcd_print(char string[]);
+      |                ~~~~~^~~~~~~~
+../Core/Src/main.c:210:33: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  210 |                         sprintf(str, "T:%.1fC H:%.1f\%%", ths.temp, ths.hum);
+      |                                 ^~~
+      |                                 |
+      |                                 uint8_t * {aka unsigned char *}
+../Core/Src/main.c:210:33: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:212:35: warning: pointer targets in passing argument 1 of 'lcd_print' differ in signedness [-Wpointer-sign]
+  212 |                         lcd_print(str);
+      |                                   ^~~
+      |                                   |
+      |                                   uint8_t * {aka unsigned char *}
+../Core/Inc/hd44780.h:23:21: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+   23 | void lcd_print(char string[]);
+      |                ~~~~~^~~~~~~~
+../Core/Src/main.c:215:25: warning: incompatible implicit declaration of built-in function 'printf' [-Wbuiltin-declaration-mismatch]
+  215 |                         printf("Pres: %.1fhPA T:%.1fC H:%.1f%%\r\n", press, ths.temp, ths.hum);
+      |                         ^~~~~~
+../Core/Src/main.c:215:25: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/main.c:217:25: warning: incompatible implicit declaration of built-in function 'sprintf' [-Wbuiltin-declaration-mismatch]
+  217 |                         sprintf(str, "Pres: %.1fmmHg", press*0.750);
+      |                         ^~~~~~~
+../Core/Src/main.c:217:25: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+../Core/Src/main.c:217:33: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  217 |                         sprintf(str, "Pres: %.1fmmHg", press*0.750);
+      |                                 ^~~
+      |                                 |
+      |                                 uint8_t * {aka unsigned char *}
+../Core/Src/main.c:217:33: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:219:35: warning: pointer targets in passing argument 1 of 'lcd_print' differ in signedness [-Wpointer-sign]
+  219 |                         lcd_print(str);
+      |                                   ^~~
+      |                                   |
+      |                                   uint8_t * {aka unsigned char *}
+../Core/Inc/hd44780.h:23:21: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+   23 | void lcd_print(char string[]);
+      |                ~~~~~^~~~~~~~
+../Core/Src/main.c:221:33: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  221 |                         sprintf(str, "T:%.1fC H:%.1f\%%", (ths.temp*9/5)+32, ths.hum);
+      |                                 ^~~
+      |                                 |
+      |                                 uint8_t * {aka unsigned char *}
+../Core/Src/main.c:221:33: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:223:35: warning: pointer targets in passing argument 1 of 'lcd_print' differ in signedness [-Wpointer-sign]
+  223 |                         lcd_print(str);
+      |                                   ^~~
+      |                                   |
+      |                                   uint8_t * {aka unsigned char *}
+../Core/Inc/hd44780.h:23:21: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+   23 | void lcd_print(char string[]);
+      |                ~~~~~^~~~~~~~
+../Core/Src/main.c:226:25: warning: incompatible implicit declaration of built-in function 'printf' [-Wbuiltin-declaration-mismatch]
+  226 |                         printf("Pres: %.1fmmHg T:%.1fF H:%.1f%%\r\n", press*0.750, (ths.temp*9/5)+32, ths.hum);
+      |                         ^~~~~~
+../Core/Src/main.c:226:25: note: include '<stdio.h>' or provide a declaration of 'printf'
+arm-none-eabi-gcc -o "Practica3.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/paco/Documents/Universidad/SETR1/Workspace/SETR1/Practica3/STM32L475VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Practica3.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Practica3.elf
+ 
 arm-none-eabi-size  Practica3.elf 
+arm-none-eabi-objdump -h -S Practica3.elf  > "Practica3.list"
    text	   data	    bss	    dec	    hex	filename
-   7080	     12	   1580	   8672	   21e0	Practica3.elf
+  39688	    472	   2208	  42368	   a580	Practica3.elf
 Finished building: default.size.stdout
  
+Finished building: Practica3.list
+ 
 
-21:17:04 Build Finished. 0 errors, 0 warnings. (took 245ms)
+21:41:11 Build Finished. 0 errors, 38 warnings. (took 269ms)
 

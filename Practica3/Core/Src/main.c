@@ -151,81 +151,81 @@ int main(void)
 
 //	Fase 4
 
-//	if(modo == 0){
-//		if(unidad==0){
-//			sprintf(str, "Pres: %.1fhPA", maxP);
-//			moveToXY(0, 0);
-//			lcd_print(str);
-//
-//			sprintf(str, "T:%.1fC H:%.1f\%%", maxT, maxH);
-//			moveToXY(1, 0);
-//			lcd_print(str);
-//			HAL_Delay(500);
-//
-//			printf("Maximos - > Pres: %.1fhPA T:%.1fC H:%.1f%%\r\n", maxP, maxT, maxH);
-//		}else{
-//			sprintf(str, "Pres: %.1fmmHg", maxP*0.750);
-//			moveToXY(0, 0);
-//			lcd_print(str);
-//
-//			sprintf(str, "T:%.1fF H:%.1f\%%", (maxT*9/5)+32, maxH);
-//			moveToXY(1, 0);
-//			lcd_print(str);
-//			HAL_Delay(500);
-//
-//			printf("Maximos - > Pres: %.1fmmHg T:%.1fF H:%.1f%%\r\n", maxP*0.750, (maxT*9/5)+32, maxH);
-//		}
-//	}else if(modo == 1){
-//		if(unidad == 0){
-//			sprintf(str, "Pres: %.1fhPA", minP);
-//			moveToXY(0, 0);
-//			lcd_print(str);
-//
-//			sprintf(str, "T:%.1fC H:%.1f\%%", minT, minH);
-//			moveToXY(1, 0);
-//			lcd_print(str);
-//			HAL_Delay(500);
-//
-//			printf("Minimos - > Pres: %.1fhPA T:%.1fC H:%.1f%%\r\n", minP, minT, minH);
-//		}else{
-//			sprintf(str, "Pres: %.1fmmHg", minP*0.750);
-//			moveToXY(0, 0);
-//			lcd_print(str);
-//
-//			sprintf(str, "T:%.1fF H:%.1f\%%", (minT*9/5)+32, minH);
-//			moveToXY(1, 0);
-//			lcd_print(str);
-//			HAL_Delay(500);
-//
-//			printf("Minimos - > Pres: %.1fmmHg T:%.1fF H:%.1f%%\r\n", minP*0.750, (minT*9/5)+32, minH);
-//		}
-//	}else if(modo == 2){
-//		resetVG(ths.temp, press, ths.hum);
-//	}else{
-//		if(unidad == 0){
-//			sprintf(str, "Pres: %.1fhPA", press);
-//			moveToXY(0, 0);
-//			lcd_print(str);
-//
-//			sprintf(str, "T:%.1fC H:%.1f\%%", ths.temp, ths.hum);
-//			moveToXY(1, 0);
-//			lcd_print(str);
-//			HAL_Delay(500);
-//
-//			printf("Pres: %.1fhPA T:%.1fC H:%.1f%%\r\n", press, ths.temp, ths.hum);
-//		} else {
-//			sprintf(str, "Pres: %.1fmmHg", press*0.750);
-//			moveToXY(0, 0);
-//			lcd_print(str);
-//
-//			sprintf(str, "T:%.1fC H:%.1f\%%", (ths.temp*9/5)+32, ths.hum);
-//			moveToXY(1, 0);
-//			lcd_print(str);
-//			HAL_Delay(500);
-//
-//			printf("Pres: %.1fmmHg T:%.1fF H:%.1f%%\r\n", press*0.750, (ths.temp*9/5)+32, ths.hum);
-//		}
-//	}
+	if(modo == 0){
+		if(unidad==0){
+			sprintf(str, "Pres: %.1fhPA", maxP);
+			moveToXY(0, 0);
+			lcd_print(str);
+
+			sprintf(str, "T:%.1fC H:%.1f\%%", maxT, maxH);
+			moveToXY(1, 0);
+			lcd_print(str);
+			HAL_Delay(500);
+
+			printf("Maximos - > Pres: %.1fhPA T:%.1fC H:%.1f%%\r\n", maxP, maxT, maxH);
+		}else{
+			sprintf(str, "Pres: %.1fmmHg", maxP*0.750);
+			moveToXY(0, 0);
+			lcd_print(str);
+
+			sprintf(str, "T:%.1fF H:%.1f\%%", (maxT*9/5)+32, maxH);
+			moveToXY(1, 0);
+			lcd_print(str);
+			HAL_Delay(500);
+
+			printf("Maximos - > Pres: %.1fmmHg T:%.1fF H:%.1f%%\r\n", maxP*0.750, (maxT*9/5)+32, maxH);
+		}
+	}else if(modo == 1){
+		if(unidad == 0){
+			sprintf(str, "Pres: %.1fhPA", minP);
+			moveToXY(0, 0);
+			lcd_print(str);
+
+			sprintf(str, "T:%.1fC H:%.1f\%%", minT, minH);
+			moveToXY(1, 0);
+			lcd_print(str);
+			HAL_Delay(500);
+
+			printf("Minimos - > Pres: %.1fhPA T:%.1fC H:%.1f%%\r\n", minP, minT, minH);
+		}else{
+			sprintf(str, "Pres: %.1fmmHg", minP*0.750);
+			moveToXY(0, 0);
+			lcd_print(str);
+
+			sprintf(str, "T:%.1fF H:%.1f\%%", (minT*9/5)+32, minH);
+			moveToXY(1, 0);
+			lcd_print(str);
+			HAL_Delay(500);
+
+			printf("Minimos - > Pres: %.1fmmHg T:%.1fF H:%.1f%%\r\n", minP*0.750, (minT*9/5)+32, minH);
+		}
+	}else if(modo == 2){
+		resetVG(ths.temp, press, ths.hum);
+	}else{
+		if(unidad == 0){
+			sprintf(str, "Pres: %.1fhPA", press);
+			moveToXY(0, 0);
+			lcd_print(str);
+
+			sprintf(str, "T:%.1fC H:%.1f\%%", ths.temp, ths.hum);
+			moveToXY(1, 0);
+			lcd_print(str);
+			HAL_Delay(500);
+
+			printf("Pres: %.1fhPA T:%.1fC H:%.1f%%\r\n", press, ths.temp, ths.hum);
+		} else {
+			sprintf(str, "Pres: %.1fmmHg", press*0.750);
+			moveToXY(0, 0);
+			lcd_print(str);
+
+			sprintf(str, "T:%.1fC H:%.1f\%%", (ths.temp*9/5)+32, ths.hum);
+			moveToXY(1, 0);
+			lcd_print(str);
+			HAL_Delay(500);
+
+			printf("Pres: %.1fmmHg T:%.1fF H:%.1f%%\r\n", press*0.750, (ths.temp*9/5)+32, ths.hum);
+		}
+	}
 
 	// Fase 2 y 3
 //	sprintf(str, "Pres: %.1fhPA", press);
@@ -240,27 +240,27 @@ int main(void)
 //	printf("Pres: %.1fhPA T:%.1fC H:%.1f%%\r\n", press, ths.temp, ths.hum);
 
 
-	lcd_print("La presion es de:");
-	moveToXY(1, 0);
-	writeIntegerToLCD(press);
-	lcd_print("hPA");
-	HAL_Delay(5000);
-	lcd_clear();
-	lcd_print("La humedad es de:");
-	moveToXY(1, 0);
-	writeIntegerToLCD(ths.hum);
-	lcd_print("%");
-	HAL_Delay(5000);
-	lcd_clear();
-	lcd_print("La temperatura es de:");
-	moveToXY(1, 0);
-	writeIntegerToLCD(ths.temp);
-	lcd_print("C");
-	HAL_Delay(10000);
-	lcd_clear();
-	lcd_print("Borrando...");
-	HAL_Delay(400);
-	lcd_clear();
+//	lcd_print("La presion es de:");
+//	moveToXY(1, 0);
+//	writeIntegerToLCD(press);
+//	lcd_print("hPA");
+//	HAL_Delay(5000);
+//	lcd_clear();
+//	lcd_print("La humedad es de:");
+//	moveToXY(1, 0);
+//	writeIntegerToLCD(ths.hum);
+//	lcd_print("%");
+//	HAL_Delay(5000);
+//	lcd_clear();
+//	lcd_print("La temperatura es de:");
+//	moveToXY(1, 0);
+//	writeIntegerToLCD(ths.temp);
+//	lcd_print("C");
+//	HAL_Delay(10000);
+//	lcd_clear();
+//	lcd_print("Borrando...");
+//	HAL_Delay(400);
+//	lcd_clear();
   }
   /* USER CODE END 3 */
 }
